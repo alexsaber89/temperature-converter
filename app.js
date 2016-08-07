@@ -4,25 +4,31 @@ var convertedTempDiv = document.getElementById("converted_temp");
 //temperature conversion functions
 function toCelsius () {
   var convertedTemp = (userInput.value - 32) * .5556;
+  var result;
   console.log("Converted temp: ",convertedTemp);
-  convertedTempDiv.innerHTML += "<p class='celsius'>" + convertedTemp + "</p>";
+  if (convertedTemp > 32) {
+    result = "<p class='celsius red'>" + convertedTemp + "</p>";
+  } else if (convertedTemp < 0) {
+    result = "<p class='celsius blue'>" + convertedTemp + "</p>";
+  } else {
+    result = "<p class='celsius'>" + convertedTemp + "</p>";
+  }
+  convertedTempDiv.innerHTML = result;
 }
 
 function toFahrenheit () {
   var convertedTemp = (userInput.value * 1.8) + 32;
+  var result;
   console.log("Converted temp: ",convertedTemp);
-  convertedTempDiv.innerHTML = "<p class='fahrenheit'>" + convertedTemp + "</p>";
+  if (convertedTemp > 90) {
+    result = "<p class='celsius red'>" + convertedTemp + "</p>";
+  } else if (convertedTemp < 32) {
+    result = "<p class='celsius blue'>" + convertedTemp + "</p>";
+  } else {
+    result = "<p class='celsius'>" + convertedTemp + "</p>";
+  }
+  convertedTempDiv.innerHTML = result;
 }
-
-//Determine if red color is needed
-if (convertedTempDiv.innerHTML.className === 'fahrenheit' && convertedTemp > 90) {
-  convertedTempDiv.innerHTML.className += 'red';
-} else if (convertedTempDiv.innerHTML.className === 'celsius' && convertedTemp > 32) {
-  convertedTempDiv.innerHTML.className += 'red';
-};
-
-//Determine if blue color is needed
-
 
 //Get a reference to the button element in the DOM
 var button = document.getElementById("converter");
